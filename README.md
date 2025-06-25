@@ -11,37 +11,29 @@
       padding: 20px;
       color: #333;
     }
-    h1 {
+    .section {
+      margin-bottom: 30px;
+    }
+    .title {
+      font-size: 24px;
+      font-weight: bold;
       color: #006699;
+      margin-bottom: 10px;
     }
-    h2 {
-      color: #444;
-      margin-top: 30px;
-    }
-    .service {
-      margin: 10px 0;
-    }
-    .actions {
-      margin-top: 30px;
+    .service, .faq-item {
+      margin-bottom: 15px;
     }
     .actions a {
       display: inline-block;
-      margin: 5px 10px;
+      margin: 5px 10px 5px 0;
       padding: 10px 15px;
       background: #006699;
       color: white;
       text-decoration: none;
       border-radius: 5px;
     }
-    .faq {
-      margin-top: 40px;
-    }
-    .faq h3 {
-      margin-bottom: 5px;
-      color: #006699;
-    }
     footer {
-      margin-top: 40px;
+      margin-top: 30px;
       font-size: 0.9em;
       color: #666;
     }
@@ -58,17 +50,29 @@
   </style>
 </head>
 <body>
-  <h1>Coopérative D2B1 Solidaire</h1>
-  <p><strong>Ensemble, nous bâtissons notre avenir.</strong><br />
-  Une coopérative solidaire pour le financement local, par la communauté et pour la communauté.</p>
 
-  <h2>Nos Services</h2>
-  <div class="service">💸 <strong>Épargne solidaire</strong><br />Cotisation régulière mensuelle pour les membres.</div>
-  <div class="service">🔁 <strong>Crédit rotatif</strong><br />Prêts tournants entre membres selon un calendrier.</div>
-  <div class="service">🛠️ <strong>Financement de projets</strong><br />Demande de micro-financement pour projets locaux.</div>
-  <div class="service">📊 <strong>Participation aux décisions</strong><br />Assemblées virtuelles ou sondages communautaires.</div>
+  <div class="section title">Coopérative D2B1 Solidaire</div>
+  <div class="section">
+    Ensemble, nous bâtissons notre avenir.<br />
+    Une coopérative solidaire pour le financement local, par la communauté et pour la communauté.
+  </div>
 
-  <h2>🔐 Espace Membre Sécurisé</h2>
+  <div class="section title">Nos Services</div>
+  <div class="section">
+    💸 Épargne solidaire<br />
+    Cotisation régulière mensuelle pour les membres.<br /><br />
+
+    🔁 Crédit rotatif<br />
+    Prêts tournants entre membres selon un calendrier.<br /><br />
+
+    🛠️ Financement de projets<br />
+    Demande de micro-financement pour projets locaux.<br /><br />
+
+    📊 Participation aux décisions<br />
+    Assemblées virtuelles ou sondages communautaires.
+  </div>
+
+  <div class="section title">🔐 Espace Membre Sécurisé</div>
   <div class="actions">
     <a href="#">Connexion</a>
     <a href="#">🧑‍🤝‍🧑 Devenir Membre</a>
@@ -76,23 +80,21 @@
     <a href="#">📄 Documents et règlements</a>
   </div>
 
-  <div class="faq">
-    <h2>FAQ Coopérative</h2>
-    <h3>Qui peut devenir membre ?</h3>
-    <p>Toute personne partageant nos valeurs solidaires et prête à s'engager.</p>
+  <div class="section title">FAQ Coopérative</div>
+  <div class="faq-item">Qui peut devenir membre ?</div>
+  <div>Toute personne partageant nos valeurs solidaires et prête à s'engager.</div>
 
-    <h3>Comment les rotations fonctionnent-elles ?</h3>
-    <p>Un calendrier de tirage est défini selon les contributions et priorités.</p>
+  <div class="faq-item">Comment les rotations fonctionnent-elles ?</div>
+  <div>Un calendrier de tirage est défini selon les contributions et priorités.</div>
 
-    <h3>Que se passe-t-il si un membre ne paie pas ?</h3>
-    <p>Des mesures de médiation sont mises en place, voire exclusion après plusieurs rappels.</p>
+  <div class="faq-item">Que se passe-t-il si un membre ne paie pas ?</div>
+  <div>Des mesures de médiation sont mises en place, voire exclusion après plusieurs rappels.</div>
 
-    <h3>Peut-on quitter la coopérative ?</h3>
-    <p>Oui, selon les règles établies dans le règlement intérieur.</p>
+  <div class="faq-item">Peut-on quitter la coopérative ?</div>
+  <div>Oui, selon les règles établies dans le règlement intérieur.</div>
 
-    <h3>Comment les décisions sont-elles prises ?</h3>
-    <p>Par sondage, vote en ligne ou lors des assemblées générales.</p>
-  </div>
+  <div class="faq-item">Comment les décisions sont-elles prises ?</div>
+  <div>Par sondage, vote en ligne ou lors des assemblées générales.</div>
 
   <footer>
     📩 contact@d2b1solidaire.fr |
@@ -114,5 +116,6 @@
       URL.revokeObjectURL(url);
     }
   </script>
+
 </body>
 </html>
