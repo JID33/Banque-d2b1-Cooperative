@@ -45,6 +45,16 @@
       font-size: 0.9em;
       color: #666;
     }
+    .download-btn {
+      margin-top: 40px;
+      padding: 12px 20px;
+      background-color: #006699;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
@@ -89,5 +99,20 @@
     <a href="#">Rejoindre la coopérative</a> |
     <a href="#">Voir les règles</a>
   </footer>
+
+  <button class="download-btn" onclick="downloadHTML()">📥 Télécharger cette page</button>
+
+  <script>
+    function downloadHTML() {
+      const htmlContent = document.documentElement.outerHTML;
+      const blob = new Blob([htmlContent], { type: "text/html" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "cooperative-d2b1.html";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
 </body>
 </html>
