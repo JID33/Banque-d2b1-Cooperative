@@ -1,155 +1,93 @@
-# Banque-d2b1-Cooperative
-<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coopérative D2B1 Solidaire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banque-d2b1-Cooperative</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
       margin: 0;
-      background: #f4faff;
-      color: #0a2540;
-    }
-    header {
-      background-color: #d0ecff;
-      text-align: center;
-      padding: 30px 20px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-      color: #0a2540;
-    }
-    header p {
-      font-size: 1.1em;
-      margin-top: 10px;
-    }
-    .section {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .section h2 {
-      font-size: 1.8em;
-      margin-bottom: 30px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .card {
-      background: white;
       padding: 20px;
-      border: 1px solid #cbe4f9;
-      border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    .card h3 {
-      margin-top: 10px;
-    }
-    .card p {
-      font-size: 0.95em;
       color: #333;
     }
-    .button {
+    h1 {
+      color: #006699;
+    }
+    h2 {
+      color: #444;
+      margin-top: 30px;
+    }
+    .service {
+      margin: 10px 0;
+    }
+    .actions {
+      margin-top: 30px;
+    }
+    .actions a {
       display: inline-block;
-      padding: 10px 20px;
-      background-color: #0077cc;
+      margin: 5px 10px;
+      padding: 10px 15px;
+      background: #006699;
       color: white;
-      border-radius: 8px;
       text-decoration: none;
-      margin-top: 10px;
+      border-radius: 5px;
     }
     .faq {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
+      margin-top: 40px;
     }
-    .faq ul {
-      list-style-type: circle;
-      padding-left: 20px;
+    .faq h3 {
+      margin-bottom: 5px;
+      color: #006699;
     }
     footer {
-      background-color: #e0f0ff;
-      text-align: center;
-      padding: 20px;
+      margin-top: 40px;
       font-size: 0.9em;
-    }
-    footer a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #0077cc;
+      color: #666;
     }
   </style>
 </head>
 <body>
-
-<header>
   <h1>Coopérative D2B1 Solidaire</h1>
-  <p>Ensemble, nous bâtissons notre avenir.<br>
+  <p><strong>Ensemble, nous bâtissons notre avenir.</strong><br />
   Une coopérative solidaire pour le financement local, par la communauté et pour la communauté.</p>
-</header>
 
-<section class="section">
   <h2>Nos Services</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>💸 Épargne solidaire</h3>
-      <p>Cotisation régulière mensuelle pour les membres.</p>
-    </div>
-    <div class="card">
-      <h3>🔁 Crédit rotatif</h3>
-      <p>Prêts tournants entre membres selon un calendrier.</p>
-    </div>
-    <div class="card">
-      <h3>🛠️ Financement de projets</h3>
-      <p>Demande de micro-financement pour projets locaux.</p>
-    </div>
-    <div class="card">
-      <h3>📊 Participation aux décisions</h3>
-      <p>Assemblées virtuelles ou sondages communautaires.</p>
-    </div>
-    <div class="card">
-      <h3>🔐 Espace Membre Sécurisé</h3>
-      <a href="#" class="button">Connexion</a>
-    </div>
-    <div class="card">
-      <h3>🧑‍🤝‍🧑 Devenir Membre</h3>
-      <a href="#" class="button">Rejoindre</a>
-    </div>
-    <div class="card">
-      <h3>📋 Projets financés</h3>
-      <a href="#" class="button">Voir</a>
-    </div>
-    <div class="card">
-      <h3>📄 Documents et règlements</h3>
-      <a href="#" class="button">Lire</a>
-    </div>
-  </div>
-</section>
+  <div class="service">💸 <strong>Épargne solidaire</strong><br />Cotisation régulière mensuelle pour les membres.</div>
+  <div class="service">🔁 <strong>Crédit rotatif</strong><br />Prêts tournants entre membres selon un calendrier.</div>
+  <div class="service">🛠️ <strong>Financement de projets</strong><br />Demande de micro-financement pour projets locaux.</div>
+  <div class="service">📊 <strong>Participation aux décisions</strong><br />Assemblées virtuelles ou sondages communautaires.</div>
 
-<section class="section">
-  <h2>FAQ Coopérative</h2>
+  <h2>🔐 Espace Membre Sécurisé</h2>
+  <div class="actions">
+    <a href="#">Connexion</a>
+    <a href="#">🧑‍🤝‍🧑 Devenir Membre</a>
+    <a href="#">📋 Projets financés</a>
+    <a href="#">📄 Documents et règlements</a>
+  </div>
+
   <div class="faq">
-    <ul>
-      <li>Qui peut devenir membre ?</li>
-      <li>Comment les rotations fonctionnent-elles ?</li>
-      <li>Que se passe-t-il si un membre ne paie pas ?</li>
-      <li>Peut-on quitter la coopérative ?</li>
-      <li>Comment les décisions sont-elles prises ?</li>
-    </ul>
+    <h2>FAQ Coopérative</h2>
+    <h3>Qui peut devenir membre ?</h3>
+    <p>Toute personne partageant nos valeurs solidaires et prête à s'engager.</p>
+
+    <h3>Comment les rotations fonctionnent-elles ?</h3>
+    <p>Un calendrier de tirage est défini selon les contributions et priorités.</p>
+
+    <h3>Que se passe-t-il si un membre ne paie pas ?</h3>
+    <p>Des mesures de médiation sont mises en place, voire exclusion après plusieurs rappels.</p>
+
+    <h3>Peut-on quitter la coopérative ?</h3>
+    <p>Oui, selon les règles établies dans le règlement intérieur.</p>
+
+    <h3>Comment les décisions sont-elles prises ?</h3>
+    <p>Par sondage, vote en ligne ou lors des assemblées générales.</p>
   </div>
-</section>
 
-<footer>
-  📩 contact@d2b1solidaire.fr |
-  <a href="#">Rejoindre la coopérative</a> |
-  <a href="#">Voir les règles</a>
-</footer>
-
+  <footer>
+    📩 contact@d2b1solidaire.fr |
+    <a href="#">Rejoindre la coopérative</a> |
+    <a href="#">Voir les règles</a>
+  </footer>
 </body>
 </html>
