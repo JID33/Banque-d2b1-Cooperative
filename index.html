@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Psychologique avec Diagnostic</title>
+    <title>Multilingual Psychological Test</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,262 +45,588 @@
             font-weight: 600;
             color: #4f46e5;
         }
+        #lang-switcher {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236B7280%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right .7em top 50%;
+            background-size: .65em auto;
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <div class="container mx-auto max-w-4xl p-4 sm:p-6 md:p-8">
+        
+        <div class="flex justify-end mb-4">
+            <select id="lang-switcher" class="bg-white border border-gray-300 text-gray-700 font-semibold py-2 px-4 pr-8 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="ht">Kreyòl Ayisyen</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+
         <header id="main-header" class="text-center mb-10">
-            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900">Évaluation Psychologique</h1>
-            <p class="mt-3 text-lg text-gray-600">Un outil pour mieux comprendre les personnalités.</p>
+            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900" data-i18n-key="main_title">Psychological Assessment</h1>
+            <p class="mt-3 text-lg text-gray-600" data-i18n-key="main_subtitle">A tool to better understand personalities.</p>
         </header>
 
-        <!-- Section du Test -->
+        <!-- Test Section -->
         <section id="test-section">
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-semibold text-gray-800">Partie 1 : Questionnaire de Personnalité</h2>
-                <p class="mt-2 text-gray-600">Répondez honnêtement pour garantir la pertinence de l'analyse.</p>
+                <h2 class="text-2xl font-semibold text-gray-800" data-i18n-key="part1_title">Part 1: Personality Questionnaire</h2>
+                <p class="mt-2 text-gray-600" data-i18n-key="part1_subtitle">Answer honestly to ensure the relevance of the analysis.</p>
             </div>
             <form id="quiz-form" class="space-y-6">
-                <!-- Les questions seront injectées ici -->
+                <!-- Questions will be injected here by JS -->
             </form>
             <div class="mt-10 flex justify-center">
-                <button type="submit" form="quiz-form" class="bg-indigo-600 text-white font-bold py-4 px-10 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-transform transform hover:scale-105 duration-300">
-                    Générer le Diagnostic
+                <button type="submit" form="quiz-form" id="generate-btn" class="bg-indigo-600 text-white font-bold py-4 px-10 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-transform transform hover:scale-105 duration-300" data-i18n-key="generate_btn">
+                    Generate Diagnostic
                 </button>
             </div>
         </section>
 
-        <!-- Section du Diagnostic -->
+        <!-- Diagnostic Section -->
         <section id="diagnostic-section" class="hidden mt-12">
             <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-800">Partie 2 : Diagnostic Psychologique</h2>
-                <p class="mt-2 text-gray-600">Analyse basée sur vos réponses.</p>
+                <h2 class="text-3xl font-bold text-gray-800" data-i18n-key="part2_title">Part 2: Psychological Diagnostic</h2>
+                <p class="mt-2 text-gray-600" data-i18n-key="part2_subtitle">Analysis based on your answers.</p>
             </div>
             
             <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg space-y-8">
                 <div>
-                    <h3 class="text-xl font-semibold text-indigo-700 border-b-2 border-indigo-200 pb-2 mb-4">Profil des Traits Dominants</h3>
+                    <h3 class="text-xl font-semibold text-indigo-700 border-b-2 border-indigo-200 pb-2 mb-4" data-i18n-key="profile_title">Dominant Trait Profile</h3>
                     <div id="profile-results" class="space-y-4">
-                        <!-- Les barres de résultats du profil seront injectées ici -->
+                        <!-- Profile bars will be injected here -->
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-xl font-semibold text-indigo-700 border-b-2 border-indigo-200 pb-2 mb-4">Synthèse et Analyse Comportementale</h3>
+                    <h3 class="text-xl font-semibold text-indigo-700 border-b-2 border-indigo-200 pb-2 mb-4" data-i18n-key="synthesis_title">Synthesis & Behavioral Analysis</h3>
                     <div id="diagnostic-synthesis" class="text-gray-700 space-y-2">
-                        <!-- La synthèse sera injectée ici -->
+                        <!-- Synthesis will be injected here -->
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-xl font-semibold text-indigo-700 border-b-2 border-indigo-200 pb-2 mb-4">Potentiel et Axes de Développement</h3>
+                    <h3 class="text-xl font-semibold text-indigo-700 border-b-2 border-indigo-200 pb-2 mb-4" data-i18n-key="potential_title">Potential & Development Areas</h3>
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div id="strengths-analysis" class="bg-green-50 p-4 rounded-lg border border-green-200"></div>
-                        <div id="development-analysis" class="bg-amber-50 p-4 rounded-lg border border-amber-200"></div>
+                        <div id="strengths-analysis"></div>
+                        <div id="development-analysis"></div>
                     </div>
                 </div>
                  <div>
-                    <h3 class="text-xl font-semibold text-indigo-700 border-b-2 border-indigo-200 pb-2 mb-4">Environnement de Travail Idéal</h3>
-                    <div id="environment-analysis" class="bg-sky-50 p-4 rounded-lg border border-sky-200"></div>
+                    <h3 class="text-xl font-semibold text-indigo-700 border-b-2 border-indigo-200 pb-2 mb-4" data-i18n-key="environment_title">Ideal Work Environment</h3>
+                    <div id="environment-analysis"></div>
                 </div>
             </div>
 
             <div class="text-center mt-10">
-                <button onclick="resetTest()" class="bg-gray-200 text-gray-800 font-semibold py-3 px-8 rounded-full hover:bg-gray-300 transition duration-300">
-                    Recommencer une nouvelle évaluation
+                <button onclick="resetTest()" id="reset-btn" class="bg-gray-200 text-gray-800 font-semibold py-3 px-8 rounded-full hover:bg-gray-300 transition duration-300" data-i18n-key="reset_btn">
+                    Start a New Assessment
                 </button>
             </div>
         </section>
 
         <footer class="text-center mt-16 text-sm text-gray-500">
-            <p><strong>Avertissement :</strong> Cet outil fournit une analyse basée sur le modèle des Big Five. Il ne constitue pas un diagnostic clinique et ne remplace pas l'avis d'un psychologue ou d'un professionnel de la santé mentale.</p>
+            <p data-i18n-key="disclaimer"><strong>Disclaimer:</strong> This tool provides an analysis based on the Big Five model. It does not constitute a clinical diagnosis and is not a substitute for advice from a psychologist or mental health professional.</p>
         </footer>
     </div>
 
 <script>
-    const questions = [
-        // Stabilité Émotionnelle (Neuroticisme inversé)
-        { id: 'se1', text: "Face à une pression intense, je garde mon calme.", trait: 'emotionalStability', score: 1 },
-        { id: 'se2', text: "Je suis rarement affecté(e) par la critique ou les imprévus.", trait: 'emotionalStability', score: 1 },
-        { id: 'se3', text: "J'ai tendance à m'inquiéter pour des détails futurs.", trait: 'emotionalStability', score: -1 },
-
-        // Extraversion
-        { id: 'e1', text: "Dans un groupe, je n'hésite pas à prendre la parole et à partager mes idées.", trait: 'extraversion', score: 1 },
-        { id: 'e2', text: "Je me sens plus à l'aise dans un environnement de travail calme et solitaire.", trait: 'extraversion', score: -1 },
-        { id: 'e3', text: "Animer une réunion ou faire une présentation est quelque chose qui me motive.", trait: 'extraversion', score: 1 },
-
-        // Ouverture à l'expérience
-        { id: 'o1', text: "J'aime explorer de nouvelles approches, même si elles sont non conventionnelles.", trait: 'openness', score: 1 },
-        { id: 'o2', text: "Je préfère les méthodes de travail claires et qui ont déjà fait leurs preuves.", trait: 'openness', score: -1 },
-        { id: 'o3', text: "Le changement et la nouveauté sont pour moi des sources de stimulation.", trait: 'openness', score: 1 },
-
-        // Agréabilité
-        { id: 'a1', text: "L'harmonie au sein de l'équipe est plus importante que d'avoir raison à tout prix.", trait: 'agreeableness', score: 1 },
-        { id: 'a2', text: "Je n'hésite pas à exprimer mon désaccord, même si cela peut créer des tensions.", trait: 'agreeableness', score: -1 },
-        { id: 'a3', text: "Je suis naturellement porté(e) à aider mes collègues lorsqu'ils sont en difficulté.", trait: 'agreeableness', score: 1 },
-
-        // Conscienciosité
-        { id: 'c1', text: "Je suis une personne très organisée qui aime planifier ses tâches.", trait: 'conscientiousness', score: 1 },
-        { id: 'c2', text: "Je respecte toujours les délais, quitte à travailler plus intensément.", trait: 'conscientiousness', score: 1 },
-        { id: 'c3', text: "Je peux parfois remettre à plus tard les tâches moins urgentes.", trait: 'conscientiousness', score: -1 },
-    ];
-
-    const traitInfo = {
-        emotionalStability: { label: "Stabilité Émotionnelle", color: "bg-blue-500" },
-        extraversion: { label: "Extraversion", color: "bg-red-500" },
-        openness: { label: "Ouverture", color: "bg-purple-500" },
-        agreeableness: { label: "Agréabilité", color: "bg-green-500" },
-        conscientiousness: { label: "Rigueur (Conscienciosité)", color: "bg-yellow-500" },
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const quizForm = document.getElementById('quiz-form');
-        questions.forEach((q, index) => {
-            const questionCard = document.createElement('div');
-            questionCard.className = 'question-card';
-            questionCard.innerHTML = `
-                <p class="font-semibold text-lg text-gray-800 mb-4">${index + 1}. ${q.text}</p>
-                <div class="flex justify-between items-center space-x-2">
-                    <label class="scale-option">
-                        <input type="radio" name="${q.id}" value="1" required>
-                        <span class="text-sm">Pas du tout d'accord</span>
-                    </label>
-                    <label class="scale-option">
-                        <input type="radio" name="${q.id}" value="2">
-                        <span class="text-sm">Pas d'accord</span>
-                    </label>
-                    <label class="scale-option">
-                        <input type="radio" name="${q.id}" value="3">
-                        <span class="text-sm">Neutre</span>
-                    </label>
-                    <label class="scale-option">
-                        <input type="radio" name="${q.id}" value="4">
-                        <span class="text-sm">D'accord</span>
-                    </label>
-                    <label class="scale-option">
-                        <input type="radio" name="${q.id}" value="5">
-                        <span class="text-sm">Tout à fait d'accord</span>
-                    </label>
-                </div>
-            `;
-            quizForm.appendChild(questionCard);
-        });
-
-        quizForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(quizForm);
-            const scores = {
-                emotionalStability: { total: 0, count: 0 },
-                extraversion: { total: 0, count: 0 },
-                openness: { total: 0, count: 0 },
-                agreeableness: { total: 0, count: 0 },
-                conscientiousness: { total: 0, count: 0 },
-            };
-
-            for (const q of questions) {
-                let value = parseInt(formData.get(q.id));
-                if (q.score === -1) {
-                    value = 6 - value; // Inversion du score
-                }
-                scores[q.trait].total += value;
-                scores[q.trait].count++;
+// --- I18N Translation Data ---
+const translations = {
+    en: {
+        main_title: "Psychological Assessment",
+        main_subtitle: "A tool to better understand personalities.",
+        part1_title: "Part 1: Personality Questionnaire",
+        part1_subtitle: "Answer honestly to ensure the relevance of the analysis.",
+        generate_btn: "Generate Diagnostic",
+        part2_title: "Part 2: Psychological Diagnostic",
+        part2_subtitle: "Analysis based on your answers.",
+        profile_title: "Dominant Trait Profile",
+        synthesis_title: "Synthesis & Behavioral Analysis",
+        potential_title: "Potential & Development Areas",
+        environment_title: "Ideal Work Environment",
+        reset_btn: "Start a New Assessment",
+        disclaimer: "<strong>Disclaimer:</strong> This tool provides an analysis based on the Big Five model. It does not constitute a clinical diagnosis and is not a substitute for advice from a psychologist or mental health professional.",
+        scale_options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+        questions: [
+            { id: 'se1', text: "When facing intense pressure, I remain calm.", trait: 'emotionalStability', score: 1 },
+            { id: 'se2', text: "I am rarely affected by criticism or unexpected events.", trait: 'emotionalStability', score: 1 },
+            { id: 'se3', text: "I tend to worry about future details.", trait: 'emotionalStability', score: -1 },
+            { id: 'e1', text: "In a group, I don't hesitate to speak up and share my ideas.", trait: 'extraversion', score: 1 },
+            { id: 'e2', text: "I feel more comfortable in a quiet, solitary work environment.", trait: 'extraversion', score: -1 },
+            { id: 'e3', text: "Leading a meeting or giving a presentation motivates me.", trait: 'extraversion', score: 1 },
+            { id: 'o1', text: "I enjoy exploring new approaches, even if they are unconventional.", trait: 'openness', score: 1 },
+            { id: 'o2', text: "I prefer clear, proven work methods.", trait: 'openness', score: -1 },
+            { id: 'o3', text: "Change and novelty are sources of stimulation for me.", trait: 'openness', score: 1 },
+            { id: 'a1', text: "Team harmony is more important than being right at all costs.", trait: 'agreeableness', score: 1 },
+            { id: 'a2', text: "I don't hesitate to express my disagreement, even if it might create tension.", trait: 'agreeableness', score: -1 },
+            { id: 'a3', text: "I am naturally inclined to help my colleagues when they are in difficulty.", trait: 'agreeableness', score: 1 },
+            { id: 'c1', text: "I am a very organized person who likes to plan tasks.", trait: 'conscientiousness', score: 1 },
+            { id: 'c2', text: "I always meet deadlines, even if it means working more intensively.", trait: 'conscientiousness', score: 1 },
+            { id: 'c3', text: "I can sometimes postpone less urgent tasks.", trait: 'conscientiousness', score: -1 },
+        ],
+        trait_info: {
+            emotionalStability: { label: "Emotional Stability" },
+            extraversion: { label: "Extraversion" },
+            openness: { label: "Openness" },
+            agreeableness: { label: "Agreeableness" },
+            conscientiousness: { label: "Conscientiousness" },
+        },
+        analysis: {
+            synthesis_prefix: "The profile suggests a personality that is ",
+            conscientiousness_high: "<strong>rigorous and reliable</strong>, ",
+            emotionalStability_high: "particularly <strong>resilient to stress</strong>. ",
+            extraversion_high: "naturally <strong>outgoing and communicative</strong>. ",
+            agreeableness_high: "endowed with a <strong>strong collaborative spirit</strong> and great empathy. ",
+            openness_high: "very <strong>creative and adaptable</strong> to change. ",
+            extraversion_low: "rather <strong>reserved and thoughtful</strong>, preferring autonomy. ",
+            agreeableness_low: "<strong>direct and assertive</strong>, not hesitating to defend convictions. ",
+            synthesis_suffix: ".",
+            strengths_title: "Strengths & Potential",
+            dev_title: "Areas for Awareness",
+            strengths_list: {
+                conscientiousness: "<strong>Reliability:</strong> Ability to deliver quality work while respecting commitments.",
+                emotionalStability: "<strong>Resilience:</strong> Excellent management of pressure and complex situations.",
+                extraversion: "<strong>Leadership:</strong> Natural ease in communicating, influencing, and energizing a group.",
+                agreeableness: "<strong>Team Spirit:</strong> Fosters a positive work climate and effective collaboration.",
+                openness: "<strong>Innovation:</strong> Great ability to find creative solutions and adapt to change."
+            },
+            dev_list: {
+                conscientiousness: "<strong>Organization:</strong> Could benefit from methods to structure long-term priorities.",
+                emotionalStability: "<strong>Stress Management:</strong> High emotional reactivity that can be channeled constructively.",
+                extraversion: "<strong>Visibility:</strong> Expertise could be better highlighted through more proactive communication.",
+                agreeableness: "<strong>Relational Flexibility:</strong> The strength of conviction is enhanced when combined with listening to different perspectives.",
+                openness: "<strong>Openness to Change:</strong> Pragmatism is a strength but can be complemented by curiosity for new methods."
+            },
+            no_strengths: "Balanced, versatile, and adaptable profile.",
+            no_dev: "No major areas for awareness identified.",
+            env_prefix: "Thrives in environments that are ",
+            env_types: {
+                dynamic: "<strong>dynamic and innovative</strong>, project- and communication-oriented (e.g., marketing, start-up management).",
+                structured: "<strong>structured and stable</strong> that value precision and reliability (e.g., finance, engineering, administration).",
+                collaborative: "<strong>collaborative and human-centered</strong>, where listening and support are key (e.g., HR, training, customer service).",
+                procedural: "where <strong>processes are clear and technical expertise is valued</strong> (e.g., production, quality control, accounting).",
+                versatile: "<strong>versatile</strong>, offering a good balance between autonomy and teamwork, routine and new challenges."
             }
-
-            const finalScores = {};
-            for (const trait in scores) {
-                const maxScore = scores[trait].count * 5;
-                const minScore = scores[trait].count * 1;
-                finalScores[trait] = Math.round(((scores[trait].total - minScore) / (maxScore - minScore)) * 100);
+        }
+    },
+    fr: {
+        main_title: "Évaluation Psychologique",
+        main_subtitle: "Un outil pour mieux comprendre les personnalités.",
+        part1_title: "Partie 1 : Questionnaire de Personnalité",
+        part1_subtitle: "Répondez honnêtement pour garantir la pertinence de l'analyse.",
+        generate_btn: "Générer le Diagnostic",
+        part2_title: "Partie 2 : Diagnostic Psychologique",
+        part2_subtitle: "Analyse basée sur vos réponses.",
+        profile_title: "Profil des Traits Dominants",
+        synthesis_title: "Synthèse et Analyse Comportementale",
+        potential_title: "Potentiel et Axes de Développement",
+        environment_title: "Environnement de Travail Idéal",
+        reset_btn: "Recommencer une nouvelle évaluation",
+        disclaimer: "<strong>Avertissement :</strong> Cet outil fournit une analyse basée sur le modèle des Big Five. Il ne constitue pas un diagnostic clinique et ne remplace pas l'avis d'un psychologue ou d'un professionnel de la santé mentale.",
+        scale_options: ["Pas du tout d'accord", "Pas d'accord", "Neutre", "D'accord", "Tout à fait d'accord"],
+        questions: [
+            { id: 'se1', text: "Face à une pression intense, je garde mon calme.", trait: 'emotionalStability', score: 1 },
+            { id: 'se2', text: "Je suis rarement affecté(e) par la critique ou les imprévus.", trait: 'emotionalStability', score: 1 },
+            { id: 'se3', text: "J'ai tendance à m'inquiéter pour des détails futurs.", trait: 'emotionalStability', score: -1 },
+            { id: 'e1', text: "Dans un groupe, je n'hésite pas à prendre la parole et à partager mes idées.", trait: 'extraversion', score: 1 },
+            { id: 'e2', text: "Je me sens plus à l'aise dans un environnement de travail calme et solitaire.", trait: 'extraversion', score: -1 },
+            { id: 'e3', text: "Animer une réunion ou faire une présentation est quelque chose qui me motive.", trait: 'extraversion', score: 1 },
+            { id: 'o1', text: "J'aime explorer de nouvelles approches, même si elles sont non conventionnelles.", trait: 'openness', score: 1 },
+            { id: 'o2', text: "Je préfère les méthodes de travail claires et qui ont déjà fait leurs preuves.", trait: 'openness', score: -1 },
+            { id: 'o3', text: "Le changement et la nouveauté sont pour moi des sources de stimulation.", trait: 'openness', score: 1 },
+            { id: 'a1', text: "L'harmonie au sein de l'équipe est plus importante que d'avoir raison à tout prix.", trait: 'agreeableness', score: 1 },
+            { id: 'a2', text: "Je n'hésite pas à exprimer mon désaccord, même si cela peut créer des tensions.", trait: 'agreeableness', score: -1 },
+            { id: 'a3', text: "Je suis naturellement porté(e) à aider mes collègues lorsqu'ils sont en difficulté.", trait: 'agreeableness', score: 1 },
+            { id: 'c1', text: "Je suis une personne très organisée qui aime planifier ses tâches.", trait: 'conscientiousness', score: 1 },
+            { id: 'c2', text: "Je respecte toujours les délais, quitte à travailler plus intensément.", trait: 'conscientiousness', score: 1 },
+            { id: 'c3', text: "Je peux parfois remettre à plus tard les tâches moins urgentes.", trait: 'conscientiousness', score: -1 },
+        ],
+        trait_info: {
+            emotionalStability: { label: "Stabilité Émotionnelle" },
+            extraversion: { label: "Extraversion" },
+            openness: { label: "Ouverture" },
+            agreeableness: { label: "Agréabilité" },
+            conscientiousness: { label: "Rigueur (Conscienciosité)" },
+        },
+        analysis: {
+            synthesis_prefix: "Le profil suggère une personnalité ",
+            conscientiousness_high: "<strong>rigoureuse et fiable</strong>, ",
+            emotionalStability_high: "particulièrement <strong>résiliente face au stress</strong>. ",
+            extraversion_high: "naturellement <strong>tournée vers les autres et communicative</strong>. ",
+            agreeableness_high: "dotée d'un <strong>fort esprit collaboratif</strong> et d'une grande empathie. ",
+            openness_high: "très <strong>créative et adaptable</strong> au changement. ",
+            extraversion_low: "plutôt <strong>réservée et réfléchie</strong>, préférant l'autonomie. ",
+            agreeableness_low: "<strong>directe et assertive</strong>, n'hésitant pas à défendre ses convictions. ",
+            synthesis_suffix: ".",
+            strengths_title: "Forces et Potentiel",
+            dev_title: "Axes de Vigilance",
+            strengths_list: {
+                conscientiousness: "<strong>Fiabilité :</strong> Capacité à livrer un travail de qualité en respectant les engagements.",
+                emotionalStability: "<strong>Résilience :</strong> Excellente gestion de la pression et des situations complexes.",
+                extraversion: "<strong>Leadership :</strong> Aisance naturelle pour communiquer, influencer et dynamiser un groupe.",
+                agreeableness: "<strong>Esprit d'équipe :</strong> Favorise un climat de travail positif et une collaboration efficace.",
+                openness: "<strong>Innovation :</strong> Grande capacité à trouver des solutions créatives et à s'adapter au changement."
+            },
+            dev_list: {
+                conscientiousness: "<strong>Organisation :</strong> Peut bénéficier de méthodes pour structurer les priorités sur le long terme.",
+                emotionalStability: "<strong>Gestion du stress :</strong> Une forte réactivité émotionnelle qui peut être canalisée.",
+                extraversion: "<strong>Visibilité :</strong> L'expertise pourrait être davantage valorisée par une communication plus proactive.",
+                agreeableness: "<strong>Flexibilité relationnelle :</strong> La force de conviction gagne à être associée à une écoute des perspectives divergentes.",
+                openness: "<strong>Ouverture au changement :</strong> Le pragmatisme est une force, mais peut être complété par une curiosité pour les nouvelles méthodes."
+            },
+            no_strengths: "Profil équilibré, polyvalent et adaptable.",
+            no_dev: "Pas de point de vigilance majeur identifié.",
+            env_prefix: "S'épanouit dans des environnements ",
+            env_types: {
+                dynamic: "<strong>dynamiques et innovants</strong>, orientés vers le projet et la communication (ex: marketing, gestion de start-up).",
+                structured: "<strong>structurés et stables</strong> qui valorisent la précision et la fiabilité (ex: finance, ingénierie, administration).",
+                collaborative: "<strong>collaboratifs et centrés sur l'humain</strong>, où l'écoute et le support sont clés (ex: RH, formation, service client).",
+                procedural: "où les <strong>processus sont clairs et l'expertise technique est valorisée</strong> (ex: production, contrôle qualité, expertise comptable).",
+                versatile: "<strong>polyvalents</strong>, offrant un bon équilibre entre autonomie et travail d'équipe, routine et nouveaux défis."
             }
+        }
+    },
+    ht: {
+        main_title: "Evalyasyon Sikolojik",
+        main_subtitle: "Yon zouti pou pi byen konprann pèsonalite.",
+        part1_title: "Pati 1 : Kesyonè Pèsonalite",
+        part1_subtitle: "Reponn ak onètete pou asire analiz la egzat.",
+        generate_btn: "Jenere Dyagnostik",
+        part2_title: "Pati 2 : Dyagnostik Sikolojik",
+        part2_subtitle: "Analiz baze sou repons ou yo.",
+        profile_title: "Pwofil Trè Dominan yo",
+        synthesis_title: "Sentèz & Analiz Konpòtman",
+        potential_title: "Potansyèl & Aks Devlopman",
+        environment_title: "Anviwònman Travay Ideyal",
+        reset_btn: "Kòmanse yon Nouvo Evalyasyon",
+        disclaimer: "<strong>Avètisman :</strong> Zouti sa a bay yon analiz ki baze sou modèl Big Five la. Li pa yon dyagnostik klinik e li pa ranplase konsèy yon sikològ oswa yon pwofesyonèl sante mantal.",
+        scale_options: ["Pa dakò ditou", "Pa dakò", "Net", "Dakò", "Totalman dakò"],
+        questions: [
+            { id: 'se1', text: "Lè m anba gwo presyon, mwen rete kalm.", trait: 'emotionalStability', score: 1 },
+            { id: 'se2', text: "Kritik oswa evènman enprevi pa fasil afekte m.", trait: 'emotionalStability', score: 1 },
+            { id: 'se3', text: "Mwen gen tandans enkyete m pou detay alavni.", trait: 'emotionalStability', score: -1 },
+            { id: 'e1', text: "Nan yon gwoup, mwen pa ezite pran lapawòl pou m pataje lide m yo.", trait: 'extraversion', score: 1 },
+            { id: 'e2', text: "Mwen santi m pi alèz nan yon anviwònman travay ki kalm e solitè.", trait: 'extraversion', score: -1 },
+            { id: 'e3', text: "Dirije yon reyinyon oswa fè yon prezantasyon se yon bagay ki motive m.", trait: 'extraversion', score: 1 },
+            { id: 'o1', text: "Mwen renmen eksplore nouvo apwòch, menm si yo pa konvansyonèl.", trait: 'openness', score: 1 },
+            { id: 'o2', text: "Mwen prefere metòd travay ki klè e ki deja pwouve efikasite yo.", trait: 'openness', score: -1 },
+            { id: 'o3', text: "Chanjman ak nouvote se sous eksitasyon pou mwen.", trait: 'openness', score: 1 },
+            { id: 'a1', text: "Amoni nan ekip la pi enpòtan pase gen rezon a tout pri.", trait: 'agreeableness', score: 1 },
+            { id: 'a2', text: "Mwen pa ezite eksprime dezakò m, menm si sa ka kreye tansyon.", trait: 'agreeableness', score: -1 },
+            { id: 'a3', text: "Mwen natirèlman dispoze ede kòlèg mwen yo lè yo an difikilte.", trait: 'agreeableness', score: 1 },
+            { id: 'c1', text: "Mwen se yon moun ki trè òganize e ki renmen planifye travay li.", trait: 'conscientiousness', score: 1 },
+            { id: 'c2', text: "Mwen toujou respekte dat limit, menm si sa mande pou m travay plis.", trait: 'conscientiousness', score: 1 },
+            { id: 'c3', text: "Pafwa, mwen konn ranvwaye travay ki mwens ijan pou pita.", trait: 'conscientiousness', score: -1 },
+        ],
+        trait_info: {
+            emotionalStability: { label: "Estabilite Emosyonèl" },
+            extraversion: { label: "Ekstwovèsyon" },
+            openness: { label: "Ouvèti" },
+            agreeableness: { label: "Agrabète" },
+            conscientiousness: { label: "Konsyansye (Rigè)" },
+        },
+        analysis: {
+            synthesis_prefix: "Pwofil la sijere yon pèsonalite ki ",
+            conscientiousness_high: "<strong>rigourèz e fyab</strong>, ",
+            emotionalStability_high: "patikilyèman <strong>rezistan fas a strès</strong>. ",
+            extraversion_high: "natirèlman <strong>vire sou lòt moun e kominikatif</strong>. ",
+            agreeableness_high: "gen yon <strong>gwo lespri kolaboratif</strong> ak anpil anpati. ",
+            openness_high: "trè <strong>kreyatif e adaptab</strong> ak chanjman. ",
+            extraversion_low: "pito <strong>rezève e reflechi</strong>, ki prefere otonomi. ",
+            agreeableness_low: "<strong>dirèk e asètif</strong>, ki pa ezite defann konviksyon li. ",
+            synthesis_suffix: ".",
+            strengths_title: "Fòs & Potansyèl",
+            dev_title: "Pwen pou Siveye",
+            strengths_list: {
+                conscientiousness: "<strong>Fyabilite :</strong> Kapasite pou livre yon travay kalite pandan w ap respekte angajman.",
+                emotionalStability: "<strong>Rezilyans :</strong> Ekselan jesyon presyon ak sitiyasyon konplèks.",
+                extraversion: "<strong>Lidèchip :</strong> Fasilite natirèl pou kominike, enfliyanse ak dinamize yon gwoup.",
+                agreeableness: "<strong>Lespri ekip :</strong> Favorize yon klima travay pozitif ak yon kolaborasyon efikas.",
+                openness: "<strong>Inovasyon :</strong> Gwo kapasite pou jwenn solisyon kreyatif ak adapte ak chanjman."
+            },
+            dev_list: {
+                conscientiousness: "<strong>Òganizasyon :</strong> Ka benefisye de metòd pou estriktire priyorite sou tèm long.",
+                emotionalStability: "<strong>Jesyon strès :</strong> Yon gwo reyaktivite emosyonèl ki ka kanalize.",
+                extraversion: "<strong>Vizibilite :</strong> Ekspètiz la ta ka pi byen valorize pa yon kominikasyon pi proaktif.",
+                agreeableness: "<strong>Fleksibilite relasyonèl :</strong> Fòs konviksyon an vin pi bon lè li asosye ak yon koute pèspektiv diferan.",
+                openness: "<strong>Ouvèti a chanjman :</strong> Pragmatism se yon fòs men li ka konplete pa yon kiryozite pou nouvo metòd."
+            },
+            no_strengths: "Pwofil ekilibre, polivalan ak adaptab.",
+            no_dev: "Pa gen okenn pwen enpòtan pou siveye ki idantifye.",
+            env_prefix: "Pwospere nan anviwònman ki ",
+            env_types: {
+                dynamic: "<strong>dinamik ak inovatif</strong>, oryante sou pwojè ak kominikasyon (egzanp: maketing, jesyon start-up).",
+                structured: "<strong>estriktire ak estab</strong> ki valorize presizyon ak fyabilite (egzanp: finans, jeni, administrasyon).",
+                collaborative: "<strong>kolaboratif ak santre sou moun</strong>, kote koute ak sipò se kle (egzanp: RH, fòmasyon, sèvis kliyan).",
+                procedural: "kote <strong>pwosesis yo klè ak ekspètiz teknik valorize</strong> (egzanp: pwodiksyon, kontwòl kalite, kontablite).",
+                versatile: "<strong>polivalan</strong>, ki ofri yon bon ekilib ant otonomi ak travay ann ekip, woutin ak nouvo defi."
+            }
+        }
+    },
+    es: {
+        main_title: "Evaluación Psicológica",
+        main_subtitle: "Una herramienta para comprender mejor las personalidades.",
+        part1_title: "Parte 1: Cuestionario de Personalidad",
+        part1_subtitle: "Responda con honestidad para garantizar la relevancia del análisis.",
+        generate_btn: "Generar Diagnóstico",
+        part2_title: "Parte 2: Diagnóstico Psicológico",
+        part2_subtitle: "Análisis basado en sus respuestas.",
+        profile_title: "Perfil de Rasgos Dominantes",
+        synthesis_title: "Síntesis y Análisis Conductual",
+        potential_title: "Potencial y Áreas de Desarrollo",
+        environment_title: "Entorno de Trabajo Ideal",
+        reset_btn: "Comenzar una Nueva Evaluación",
+        disclaimer: "<strong>Descargo de responsabilidad:</strong> Esta herramienta proporciona un análisis basado en el modelo de los Cinco Grandes. No constituye un diagnóstico clínico y no sustituye el consejo de un psicólogo o profesional de la salud mental.",
+        scale_options: ["Muy en desacuerdo", "En desacuerdo", "Neutral", "De acuerdo", "Muy de acuerdo"],
+        questions: [
+            { id: 'se1', text: "Cuando me enfrento a una presión intensa, mantengo la calma.", trait: 'emotionalStability', score: 1 },
+            { id: 'se2', text: "Rara vez me afectan las críticas o los imprevistos.", trait: 'emotionalStability', score: 1 },
+            { id: 'se3', text: "Tiendo a preocuparme por detalles futuros.", trait: 'emotionalStability', score: -1 },
+            { id: 'e1', text: "En un grupo, no dudo en hablar y compartir mis ideas.", trait: 'extraversion', score: 1 },
+            { id: 'e2', text: "Me siento más cómodo en un entorno de trabajo tranquilo y solitario.", trait: 'extraversion', score: -1 },
+            { id: 'e3', text: "Dirigir una reunión o hacer una presentación me motiva.", trait: 'extraversion', score: 1 },
+            { id: 'o1', text: "Disfruto explorando nuevos enfoques, incluso si no son convencionales.", trait: 'openness', score: 1 },
+            { id: 'o2', text: "Prefiero métodos de trabajo claros y probados.", trait: 'openness', score: -1 },
+            { id: 'o3', text: "El cambio y la novedad son fuentes de estímulo para mí.", trait: 'openness', score: 1 },
+            { id: 'a1', text: "La armonía en el equipo es más importante que tener la razón a toda costa.", trait: 'agreeableness', score: 1 },
+            { id: 'a2', text: "No dudo en expresar mi desacuerdo, aunque pueda crear tensión.", trait: 'agreeableness', score: -1 },
+            { id: 'a3', text: "Tengo una inclinación natural a ayudar a mis colegas cuando tienen dificultades.", trait: 'agreeableness', score: 1 },
+            { id: 'c1', text: "Soy una persona muy organizada a la que le gusta planificar sus tareas.", trait: 'conscientiousness', score: 1 },
+            { id: 'c2', text: "Siempre cumplo con los plazos, aunque signifique trabajar más intensamente.", trait: 'conscientiousness', score: 1 },
+            { id: 'c3', text: "A veces puedo posponer las tareas menos urgentes.", trait: 'conscientiousness', score: -1 },
+        ],
+        trait_info: {
+            emotionalStability: { label: "Estabilidad Emocional" },
+            extraversion: { label: "Extraversión" },
+            openness: { label: "Apertura" },
+            agreeableness: { label: "Amabilidad" },
+            conscientiousness: { label: "Responsabilidad" },
+        },
+        analysis: {
+            synthesis_prefix: "El perfil sugiere una personalidad ",
+            conscientiousness_high: "<strong>rigurosa y fiable</strong>, ",
+            emotionalStability_high: "particularmente <strong>resistente al estrés</strong>. ",
+            extraversion_high: "naturalmente <strong>extrovertida y comunicativa</strong>. ",
+            agreeableness_high: "dotada de un <strong>fuerte espíritu colaborativo</strong> y gran empatía. ",
+            openness_high: "muy <strong>creativa y adaptable</strong> al cambio. ",
+            extraversion_low: "más bien <strong>reservada y reflexiva</strong>, que prefiere la autonomía. ",
+            agreeableness_low: "<strong>directa y asertiva</strong>, que no duda en defender sus convicciones. ",
+            synthesis_suffix: ".",
+            strengths_title: "Fortalezas y Potencial",
+            dev_title: "Áreas de Atención",
+            strengths_list: {
+                conscientiousness: "<strong>Fiabilidad:</strong> Capacidad para entregar un trabajo de calidad respetando los compromisos.",
+                emotionalStability: "<strong>Resiliencia:</strong> Excelente gestión de la presión y situaciones complejas.",
+                extraversion: "<strong>Liderazgo:</strong> Facilidad natural para comunicar, influir y dinamizar un grupo.",
+                agreeableness: "<strong>Espíritu de equipo:</strong> Fomenta un clima de trabajo positivo y una colaboración eficaz.",
+                openness: "<strong>Innovación:</strong> Gran capacidad para encontrar soluciones creativas y adaptarse al cambio."
+            },
+            dev_list: {
+                conscientiousness: "<strong>Organización:</strong> Podría beneficiarse de métodos para estructurar las prioridades a largo plazo.",
+                emotionalStability: "<strong>Gestión del estrés:</strong> Alta reactividad emocional que puede ser canalizada constructivamente.",
+                extraversion: "<strong>Visibilidad:</strong> La experiencia podría valorarse mejor mediante una comunicación más proactiva.",
+                agreeableness: "<strong>Flexibilidad relacional:</strong> La fuerza de la convicción se ve reforzada al combinarla con la escucha de diferentes perspectivas.",
+                openness: "<strong>Apertura al cambio:</strong> El pragmatismo es una fortaleza, pero puede complementarse con la curiosidad por nuevos métodos."
+            },
+            no_strengths: "Perfil equilibrado, versátil y adaptable.",
+            no_dev: "No se identificaron áreas importantes de atención.",
+            env_prefix: "Se desenvuelve bien en entornos ",
+            env_types: {
+                dynamic: "<strong>dinámicos e innovadores</strong>, orientados a proyectos y comunicación (ej: marketing, gestión de startups).",
+                structured: "<strong>estructurados y estables</strong> que valoran la precisión y la fiabilidad (ej: finanzas, ingeniería, administración).",
+                collaborative: "<strong>colaborativos y centrados en las personas</strong>, donde la escucha y el apoyo son clave (ej: RRHH, formación, servicio al cliente).",
+                procedural: "donde los <strong>procesos son claros y se valora la experiencia técnica</strong> (ej: producción, control de calidad, contabilidad).",
+                versatile: "<strong>versátiles</strong>, que ofrecen un buen equilibrio entre autonomía y trabajo en equipo, rutina y nuevos desafíos."
+            }
+        }
+    }
+};
 
-            displayDiagnostic(finalScores);
-        });
+// --- Core Application Logic ---
+const traitColors = {
+    emotionalStability: "bg-blue-500",
+    extraversion: "bg-red-500",
+    openness: "bg-purple-500",
+    agreeableness: "bg-green-500",
+    conscientiousness: "bg-yellow-500",
+};
+
+let currentLang = 'en';
+let currentScores = {};
+
+function renderContent(lang) {
+    currentLang = lang;
+    const t = translations[lang];
+    document.documentElement.lang = lang;
+
+    // Translate all elements with data-i18n-key
+    document.querySelectorAll('[data-i18n-key]').forEach(el => {
+        const key = el.getAttribute('data-i18n-key');
+        if (t[key]) {
+            el.innerHTML = t[key];
+        }
     });
 
-    function displayDiagnostic(scores) {
-        // Afficher les barres de profil
-        const profileContainer = document.getElementById('profile-results');
-        profileContainer.innerHTML = '';
-        for (const trait in scores) {
-            profileContainer.innerHTML += `
-                <div>
-                    <span class="font-semibold">${traitInfo[trait].label}</span>
-                    <div class="w-full bg-gray-200 rounded-full h-4 mt-1">
-                        <div class="${traitInfo[trait].color} h-4 rounded-full" style="width: ${scores[trait]}%"></div>
-                    </div>
+    // Generate questions for the selected language
+    const quizForm = document.getElementById('quiz-form');
+    quizForm.innerHTML = ''; // Clear previous questions
+    t.questions.forEach((q, index) => {
+        const questionCard = document.createElement('div');
+        questionCard.className = 'question-card';
+        let optionsHtml = t.scale_options.map((option, i) => `
+            <label class="scale-option">
+                <input type="radio" name="${q.id}" value="${i + 1}" required>
+                <span class="text-sm">${option}</span>
+            </label>
+        `).join('');
+
+        questionCard.innerHTML = `
+            <p class="font-semibold text-lg text-gray-800 mb-4">${index + 1}. ${q.text}</p>
+            <div class="flex justify-between items-center space-x-1 sm:space-x-2">
+                ${optionsHtml}
+            </div>
+        `;
+        quizForm.appendChild(questionCard);
+    });
+
+    // If results are already displayed, re-render them in the new language
+    if (!document.getElementById('diagnostic-section').classList.contains('hidden')) {
+        displayDiagnostic(currentScores);
+    }
+}
+
+function displayDiagnostic(scores) {
+    currentScores = scores;
+    const t = translations[currentLang];
+    const analysis = t.analysis;
+
+    // Render profile bars
+    const profileContainer = document.getElementById('profile-results');
+    profileContainer.innerHTML = '';
+    for (const trait in scores) {
+        profileContainer.innerHTML += `
+            <div>
+                <span class="font-semibold">${t.trait_info[trait].label}</span>
+                <div class="w-full bg-gray-200 rounded-full h-4 mt-1">
+                    <div class="${traitColors[trait]} h-4 rounded-full" style="width: ${scores[trait]}%"></div>
                 </div>
-            `;
+            </div>
+        `;
+    }
+
+    // Render synthesis
+    const synthesisContainer = document.getElementById('diagnostic-synthesis');
+    let synthesisText = analysis.synthesis_prefix;
+    if (scores.conscientiousness > 65) synthesisText += analysis.conscientiousness_high;
+    if (scores.emotionalStability > 65) synthesisText += analysis.emotionalStability_high;
+    if (scores.extraversion > 65) synthesisText += analysis.extraversion_high;
+    if (scores.agreeableness > 65) synthesisText += analysis.agreeableness_high;
+    if (scores.openness > 65) synthesisText += analysis.openness_high;
+    if (scores.extraversion < 40) synthesisText += analysis.extraversion_low;
+    if (scores.agreeableness < 40) synthesisText += analysis.agreeableness_low;
+    synthesisContainer.innerHTML = `<p>${synthesisText.slice(0, -2)}${analysis.synthesis_suffix}</p>`;
+
+    // Render strengths and development areas
+    const strengthsContainer = document.getElementById('strengths-analysis');
+    const devContainer = document.getElementById('development-analysis');
+    strengthsContainer.innerHTML = `<div class="bg-green-50 p-4 rounded-lg border border-green-200"><h4 class="font-bold text-green-800 mb-2">${analysis.strengths_title}</h4><ul class="list-disc list-inside space-y-1 text-green-700"></ul></div>`;
+    devContainer.innerHTML = `<div class="bg-amber-50 p-4 rounded-lg border border-amber-200"><h4 class="font-bold text-amber-800 mb-2">${analysis.dev_title}</h4><ul class="list-disc list-inside space-y-1 text-amber-700"></ul></div>`;
+
+    const strengthsList = strengthsContainer.querySelector('ul');
+    const devList = devContainer.querySelector('ul');
+    
+    let hasStrengths = false, hasDevs = false;
+    if (scores.conscientiousness > 70) { strengthsList.innerHTML += `<li>${analysis.strengths_list.conscientiousness}</li>`; hasStrengths = true; }
+    else if (scores.conscientiousness < 40) { devList.innerHTML += `<li>${analysis.dev_list.conscientiousness}</li>`; hasDevs = true; }
+
+    if (scores.emotionalStability > 70) { strengthsList.innerHTML += `<li>${analysis.strengths_list.emotionalStability}</li>`; hasStrengths = true; }
+    else if (scores.emotionalStability < 40) { devList.innerHTML += `<li>${analysis.dev_list.emotionalStability}</li>`; hasDevs = true; }
+
+    if (scores.extraversion > 70) { strengthsList.innerHTML += `<li>${analysis.strengths_list.extraversion}</li>`; hasStrengths = true; }
+    else if (scores.extraversion < 40) { devList.innerHTML += `<li>${analysis.dev_list.extraversion}</li>`; hasDevs = true; }
+    
+    if (scores.agreeableness > 70) { strengthsList.innerHTML += `<li>${analysis.strengths_list.agreeableness}</li>`; hasStrengths = true; }
+    else if (scores.agreeableness < 40) { devList.innerHTML += `<li>${analysis.dev_list.agreeableness}</li>`; hasDevs = true; }
+    
+    if (scores.openness > 70) { strengthsList.innerHTML += `<li>${analysis.strengths_list.openness}</li>`; hasStrengths = true; }
+    else if (scores.openness < 40) { devList.innerHTML += `<li>${analysis.dev_list.openness}</li>`; hasDevs = true; }
+
+    if (!hasStrengths) strengthsList.innerHTML = `<li>${analysis.no_strengths}</li>`;
+    if (!hasDevs) devList.innerHTML = `<li>${analysis.no_dev}</li>`;
+
+    // Render ideal environment
+    const envContainer = document.getElementById('environment-analysis');
+    let envText = analysis.env_prefix;
+    if (scores.openness > 65 && scores.extraversion > 65) envText += analysis.env_types.dynamic;
+    else if (scores.conscientiousness > 65 && scores.emotionalStability > 65) envText += analysis.env_types.structured;
+    else if (scores.agreeableness > 65 && scores.extraversion < 45) envText += analysis.env_types.collaborative;
+    else if (scores.openness < 45 && scores.conscientiousness > 65) envText += analysis.env_types.procedural;
+    else envText += analysis.env_types.versatile;
+    envContainer.innerHTML = `<div class="bg-sky-50 p-4 rounded-lg border border-sky-200"><p class="text-sky-800">${envText}</p></div>`;
+
+    // Show diagnostic section and hide test
+    document.getElementById('test-section').classList.add('hidden');
+    document.getElementById('main-header').classList.add('hidden');
+    document.getElementById('diagnostic-section').classList.remove('hidden');
+    window.scrollTo(0, 0);
+}
+
+function resetTest() {
+    document.getElementById('quiz-form').reset();
+    document.getElementById('diagnostic-section').classList.add('hidden');
+    document.getElementById('test-section').classList.remove('hidden');
+    document.getElementById('main-header').classList.remove('hidden');
+    currentScores = {};
+    window.scrollTo(0, 0);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const langSwitcher = document.getElementById('lang-switcher');
+    langSwitcher.addEventListener('change', (e) => renderContent(e.target.value));
+
+    const quizForm = document.getElementById('quiz-form');
+    quizForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(quizForm);
+        const scores = {
+            emotionalStability: { total: 0, count: 0 },
+            extraversion: { total: 0, count: 0 },
+            openness: { total: 0, count: 0 },
+            agreeableness: { total: 0, count: 0 },
+            conscientiousness: { total: 0, count: 0 },
+        };
+
+        const currentQuestions = translations[currentLang].questions;
+        for (const q of currentQuestions) {
+            let value = parseInt(formData.get(q.id));
+            if (q.score === -1) {
+                value = 6 - value; // Invert score
+            }
+            scores[q.trait].total += value;
+            scores[q.trait].count++;
         }
 
-        // Générer et afficher la synthèse
-        const synthesisContainer = document.getElementById('diagnostic-synthesis');
-        let synthesisText = "Le profil suggère une personnalité ";
-        const dominantTraits = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-        if (scores.conscientiousness > 65) synthesisText += "<strong>rigoureuse et fiable</strong>, ";
-        if (scores.emotionalStability > 65) synthesisText += "particulièrement <strong>résiliente face au stress</strong>. ";
-        if (scores.extraversion > 65) synthesisText += "naturellement <strong>tournée vers les autres et communicative</strong>. ";
-        if (scores.agreeableness > 65) synthesisText += "dotée d'un <strong>fort esprit collaboratif</strong> et d'une grande empathie. ";
-        if (scores.openness > 65) synthesisText += "très <strong>créative et adaptable</strong> au changement. ";
-        
-        if (scores.extraversion < 40) synthesisText += "plutôt <strong>réservée et réfléchie</strong>, préférant l'autonomie. ";
-        if (scores.agreeableness < 40) synthesisText += "<strong>directe et assertive</strong>, n'hésitant pas à défendre ses convictions. ";
-        
-        synthesisContainer.innerHTML = `<p>${synthesisText.slice(0, -2)}.</p>`;
+        const finalScores = {};
+        for (const trait in scores) {
+            const maxScore = scores[trait].count * 5;
+            const minScore = scores[trait].count * 1;
+            finalScores[trait] = Math.round(((scores[trait].total - minScore) / (maxScore - minScore)) * 100);
+        }
 
-        // Générer et afficher les forces et axes de développement
-        const strengthsContainer = document.getElementById('strengths-analysis');
-        const devContainer = document.getElementById('development-analysis');
-        strengthsContainer.innerHTML = `<h4 class="font-bold text-green-800 mb-2">Forces et Potentiel</h4><ul class="list-disc list-inside space-y-1 text-green-700"></ul>`;
-        devContainer.innerHTML = `<h4 class="font-bold text-amber-800 mb-2">Axes de Vigilance</h4><ul class="list-disc list-inside space-y-1 text-amber-700"></ul>`;
+        displayDiagnostic(finalScores);
+    });
 
-        const strengthsList = strengthsContainer.querySelector('ul');
-        const devList = devContainer.querySelector('ul');
-        
-        // Logique d'analyse
-        if (scores.conscientiousness > 70) strengthsList.innerHTML += `<li><strong>Fiabilité :</strong> Capacité à livrer un travail de qualité en respectant les engagements.</li>`;
-        else if (scores.conscientiousness < 40) devList.innerHTML += `<li><strong>Organisation :</strong> Peut bénéficier de méthodes pour structurer les priorités sur le long terme.</li>`;
-
-        if (scores.emotionalStability > 70) strengthsList.innerHTML += `<li><strong>Résilience :</strong> Excellente gestion de la pression et des situations complexes.</li>`;
-        else if (scores.emotionalStability < 40) devList.innerHTML += `<li><strong>Gestion du stress :</strong> Une forte réactivité émotionnelle qui peut être canalisée.</li>`;
-
-        if (scores.extraversion > 70) strengthsList.innerHTML += `<li><strong>Leadership :</strong> Aisance naturelle pour communiquer, influencer et dynamiser un groupe.</li>`;
-        else if (scores.extraversion < 40) devList.innerHTML += `<li><strong>Visibilité :</strong> L'expertise pourrait être davantage valorisée par une communication plus proactive.</li>`;
-        
-        if (scores.agreeableness > 70) strengthsList.innerHTML += `<li><strong>Esprit d'équipe :</strong> Favorise un climat de travail positif et une collaboration efficace.</li>`;
-        else if (scores.agreeableness < 40) devList.innerHTML += `<li><strong>Flexibilité relationnelle :</strong> La force de conviction gagne à être associée à une écoute des perspectives divergentes.</li>`;
-        
-        if (scores.openness > 70) strengthsList.innerHTML += `<li><strong>Innovation :</strong> Grande capacité à trouver des solutions créatives et à s'adapter au changement.</li>`;
-        else if (scores.openness < 40) devList.innerHTML += `<li><strong>Ouverture au changement :</strong> Le pragmatisme est une force, mais peut être complété par une curiosité pour les nouvelles méthodes.</li>`;
-        
-        if (strengthsList.innerHTML === '') strengthsList.innerHTML = '<li>Profil équilibré, polyvalent et adaptable.</li>';
-        if (devList.innerHTML === '') devList.innerHTML = '<li>Pas de point de vigilance majeur identifié.</li>';
-        
-        // Environnement de travail
-        const envContainer = document.getElementById('environment-analysis');
-        let envText = "S'épanouit dans des environnements ";
-        if (scores.openness > 65 && scores.extraversion > 65) envText += "<strong>dynamiques et innovants</strong>, orientés vers le projet et la communication (ex: marketing, gestion de start-up).";
-        else if (scores.conscientiousness > 65 && scores.emotionalStability > 65) envText += "<strong>structurés et stables</strong> qui valorisent la précision et la fiabilité (ex: finance, ingénierie, administration).";
-        else if (scores.agreeableness > 65 && scores.extraversion < 45) envText += "<strong>collaboratifs et centrés sur l'humain</strong>, où l'écoute et le support sont clés (ex: RH, formation, service client).";
-        else if (scores.openness < 45 && scores.conscientiousness > 65) envText += "où les <strong>processus sont clairs et l'expertise technique est valorisée</strong> (ex: production, contrôle qualité, expertise comptable).";
-        else envText += "<strong>polyvalents</strong>, offrant un bon équilibre entre autonomie et travail d'équipe, routine et nouveaux défis.";
-        envContainer.innerHTML = `<p class="text-sky-800">${envText}</p>`;
-
-
-        // Afficher la section diagnostic et masquer le test
-        document.getElementById('test-section').classList.add('hidden');
-        document.getElementById('main-header').classList.add('hidden');
-        document.getElementById('diagnostic-section').classList.remove('hidden');
-        window.scrollTo(0, 0);
-    }
-
-    function resetTest() {
-        document.getElementById('quiz-form').reset();
-        document.getElementById('diagnostic-section').classList.add('hidden');
-        document.getElementById('test-section').classList.remove('hidden');
-        document.getElementById('main-header').classList.remove('hidden');
-        window.scrollTo(0, 0);
-    }
+    // Initial render
+    renderContent(currentLang);
+});
 </script>
 
 </body>
